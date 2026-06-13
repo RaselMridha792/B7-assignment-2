@@ -1,6 +1,6 @@
 import express from "express";
 import authRoutes from "./modules/auth/auth.routes";
-import issuesRoutes from "./routes/issuesRoutes";
+import issuesRoutes from "./modules/issues/issues.routes";
 import { initDatabase } from "./config/db";
 import { config } from "./config/env";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler";
