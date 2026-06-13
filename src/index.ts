@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import authRoutes from "./modules/auth/auth.routes";
 import issuesRoutes from "./modules/issues/issues.routes";
 import { initDatabase } from "./config/db";
@@ -9,6 +10,7 @@ import { sendSuccess } from "./utils/response";
 const app = express();
 const port = config.port;
 
+app.use(cors({ origin: config.corsOrigin }));
 app.use(express.json());
 
 app.get("/", (_req, res) => {

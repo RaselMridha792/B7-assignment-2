@@ -3,6 +3,7 @@ import { config } from "./env";
 
 const pool = new Pool({
   connectionString: config.databaseUrl,
+  ssl: config.databaseSsl ? { rejectUnauthorized: false } : undefined,
 });
 
 export async function initDatabase(): Promise<void> {
