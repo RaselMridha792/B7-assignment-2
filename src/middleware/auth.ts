@@ -1,13 +1,14 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import { config } from "../config/env";
+import { UserRole } from "../types";
 
 const JWT_SECRET = config.jwtSecret;
 
 export interface AuthPayload {
   id: number;
   name: string;
-  role: "contributor" | "maintainer";
+  role: UserRole;
 }
 
 export interface AuthRequest extends Request {
