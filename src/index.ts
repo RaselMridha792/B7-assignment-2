@@ -1,12 +1,11 @@
 import express from "express";
-import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes";
 import issuesRoutes from "./routes/issuesRoutes";
-import { initDatabase } from "./db";
+import { initDatabase } from "./config/db";
+import { config } from "./config/env";
 
-dotenv.config();
 const app = express();
-const port = Number(process.env.PORT || 5000);
+const port = config.port;
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);

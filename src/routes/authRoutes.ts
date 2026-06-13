@@ -1,11 +1,12 @@
 import { Router, Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import pool from "../db";
+import pool from "../config/db";
+import { config } from "../config/env";
 
 const router = Router();
-const JWT_SECRET = process.env.JWT_SECRET || "secret-key";
-const SALT_ROUNDS = 10;
+const JWT_SECRET = config.jwtSecret;
+const SALT_ROUNDS = config.saltRounds;
 
 router.post("/signup", async (req: Request, res: Response) => {
   const { name, email, password, role } = req.body;
@@ -73,7 +74,8 @@ router.post("/login", async (req: Request, res: Response) => {
     return;
   }
 
-  const token = jwt.sign({ id: user.id, name: user.name, role: user.role }, JWT_SECRET, { expiresIn: "8h" });
+  const signOptions: jwt.SignOptions = { expiresIn: config.jwtExpiresIn as jwt.SignOptions["expiresIn"] };
+  const token = jwt.sign({ id: user.id, name: user.name, role: user.role }, JWT_SECRET, signOptions);
   delete user.password;
 
   res.status(200).json({

@@ -1,10 +1,8 @@
-import dotenv from "dotenv";
 import { Pool } from "pg";
-
-dotenv.config();
+import { config } from "./env";
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || "postgresql://postgres:password@localhost:5432/devpulse",
+  connectionString: config.databaseUrl,
 });
 
 export async function initDatabase(): Promise<void> {

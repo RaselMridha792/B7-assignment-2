@@ -1,5 +1,5 @@
 import { Router, Response } from "express";
-import pool from "../db";
+import pool from "../config/db";
 import { authenticateToken, AuthRequest } from "../middleware/auth";
 
 const router = Router();
