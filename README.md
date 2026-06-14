@@ -4,7 +4,7 @@ A collaborative REST API for software teams to report bugs, suggest features, an
 coordinate resolutions. Built with Node.js, TypeScript, Express, and PostgreSQL
 (raw SQL only — no ORM, query builder, or JOINs).
 
-- **Live API:** _<add your deployed URL here, e.g. https://devpulse-api.vercel.app>_
+- **Live API:** https://b7-assignment-2-production.up.railway.app
 - **Repository:** https://github.com/RaselMridha792/B7-assignment-2
 
 ## Features
@@ -84,7 +84,8 @@ src/
 
 ## API Endpoints
 
-Base URL: `http://localhost:5000`
+Base URL (local): `http://localhost:5000`
+Base URL (live): `https://b7-assignment-2-production.up.railway.app`
 
 | #   | Method   | Endpoint            | Access                    | Description                       |
 | --- | -------- | ------------------- | ------------------------- | --------------------------------- |
