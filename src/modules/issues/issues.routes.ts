@@ -5,11 +5,9 @@ import { createIssue, getAllIssues, getIssue, updateIssue, deleteIssue } from ".
 
 const router = Router();
 
-// Public reads.
 router.get("/", asyncHandler<AuthRequest>(getAllIssues));
 router.get("/:id", asyncHandler<AuthRequest>(getIssue));
 
-// Authenticated writes.
 router.post("/", authenticateToken, asyncHandler<AuthRequest>(createIssue));
 router.patch("/:id", authenticateToken, asyncHandler<AuthRequest>(updateIssue));
 router.delete("/:id", authenticateToken, asyncHandler<AuthRequest>(deleteIssue));

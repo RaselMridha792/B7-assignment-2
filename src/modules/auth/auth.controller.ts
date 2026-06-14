@@ -36,7 +36,6 @@ export async function signup(req: Request, res: Response): Promise<void> {
     );
     sendSuccess(res, 201, "User registered successfully", result.rows[0]);
   } catch (error: unknown) {
-    // 23505 = unique_violation (duplicate email)
     if (typeof error === "object" && error !== null && "code" in error && (error as { code: string }).code === "23505") {
       throw new AppError(400, "Email already exists", [{ field: "email", message: "Email is already registered" }]);
     }

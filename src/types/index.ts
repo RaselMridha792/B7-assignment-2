@@ -1,10 +1,7 @@
-// Shared domain + request/response types used across modules.
-
 export type UserRole = "contributor" | "maintainer";
 export type IssueType = "bug" | "feature_request";
 export type IssueStatus = "open" | "in_progress" | "resolved";
 
-// ---- Database row shapes ----
 
 export interface UserRow {
   id: number;
@@ -16,7 +13,6 @@ export interface UserRow {
   updated_at: string;
 }
 
-// User as exposed in responses (never includes password).
 export type PublicUser = Omit<UserRow, "password">;
 
 export interface ReporterSummary {
@@ -36,7 +32,6 @@ export interface IssueRow {
   updated_at: string;
 }
 
-// Issue shape returned by list/detail endpoints (reporter nested, no reporter_id).
 export interface IssueWithReporter {
   id: number;
   title: string;
@@ -48,7 +43,6 @@ export interface IssueWithReporter {
   updated_at: string;
 }
 
-// ---- Request body shapes ----
 
 export interface SignupBody {
   name?: unknown;
@@ -75,7 +69,6 @@ export interface UpdateIssueBody {
   status?: unknown;
 }
 
-// ---- Issues list query params ----
 
 export interface IssueListQuery {
   sort?: string;

@@ -1,8 +1,6 @@
 import { Pool } from "pg";
 import { config } from "./env";
 
-// Startup diagnostic — logs the DB host (never the password) so misconfigured
-// DATABASE_URL env vars are obvious in deploy logs.
 try {
   const parsed = new URL(config.databaseUrl);
   console.log(`[db] DATABASE_URL set: ${process.env.DATABASE_URL ? "yes" : "no (using default)"} | host: ${parsed.host} | ssl: ${config.databaseSsl}`);

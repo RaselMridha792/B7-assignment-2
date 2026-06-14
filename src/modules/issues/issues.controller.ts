@@ -31,7 +31,6 @@ function firstQueryValue(value: unknown): string | undefined {
   return typeof value === "string" ? value : undefined;
 }
 
-// Fetch reporter summaries for a set of ids in a single query (no JOINs).
 async function fetchReporters(ids: number[]): Promise<Map<number, ReporterSummary>> {
   const map = new Map<number, ReporterSummary>();
   if (!ids.length) return map;
@@ -187,7 +186,6 @@ export async function updateIssue(req: AuthRequest, res: Response): Promise<void
     if (!isIssueStatus(status)) {
       throw new AppError(400, "Invalid status", [{ field: "status", message: "Status must be open, in_progress, or resolved" }]);
     }
-    // Only maintainers can change the workflow status.
     if (user.role !== "maintainer") {
       throw new AppError(403, "Only maintainers can change issue status");
     }
@@ -206,8 +204,6 @@ export async function updateIssue(req: AuthRequest, res: Response): Promise<void
   const issue = issueResult.rows[0];
   if (!issue) throw new AppError(404, "Issue not found");
 
-  // Authorization: maintainers may edit any issue; contributors only their
-  // own issue, and only while it is still open.
   if (user.role !== "maintainer") {
     if (issue.reporter_id !== user.id) {
       throw new AppError(403, "Contributors can only update their own issues");
